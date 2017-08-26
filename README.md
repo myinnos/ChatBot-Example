@@ -5,5 +5,3 @@ ChatBot application to communicate two users(Driver/Passenger) based on their in
 #### Download Demo(PASSENGER) APK from [HERE](https://github.com/myinnos/ChatBot-Example/blob/master/passenger.apk "APK")
 
 Note: Use different devices for testing
-
-#### Demo:
