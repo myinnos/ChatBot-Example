@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bike.rapido.driver.AppBaseConstants;
@@ -23,7 +24,7 @@ import bike.rapido.driver.model.OptionsDataModel;
 public class OptionsListAdapter extends RecyclerView.Adapter<OptionsViewHolder> {
 
     private Activity activity;
-    private List<OptionsDataModel> optionsDataModelList;
+    private List<OptionsDataModel> optionsDataModelList = new ArrayList<OptionsDataModel>();
 
     public OptionsListAdapter(List<OptionsDataModel> optionsDataModelList, Activity activity) {
         this.activity = activity;
@@ -57,8 +58,10 @@ public class OptionsListAdapter extends RecyclerView.Adapter<OptionsViewHolder> 
             @Override
             public void onClick(View v) {
 
-                // triggering another user with notification
-                TriggerNotification.notify(activity, optionsDataModelList.get(position).getNext_question());
+                if(optionsDataModelList.get(position).getNext_question() != null) {
+                    // triggering another user with notification
+                    TriggerNotification.notify(activity, optionsDataModelList.get(position).getNext_question());
+                }
 
                 /*try {
                     OneSignal.postNotification(new JSONObject("{'contents': {'en':'Test Message'}, " +
