@@ -175,43 +175,49 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return index;
     }
 
-    public void setDataFromNotification(String trigger) {
+    public void setDataFromNotification(final String trigger) {
 
-        String JSON_DATA = RememberPreferences.getString(AppBaseConstants.CHAT_JSON_DATA, null);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
 
-        try {
-            JSONArray jArray = new JSONArray(JSON_DATA);
+                String JSON_DATA = RememberPreferences.getString(AppBaseConstants.CHAT_JSON_DATA, null);
 
-            for (int j = 1; j < jArray.length(); j++) {
-                JSONObject jsonObject = jArray.getJSONObject(j);
+                try {
+                    JSONArray jArray = new JSONArray(JSON_DATA);
 
-                if (jsonObject.getString("id").equals(trigger)) {
-                    QuestionDataModel questionDataModel = new QuestionDataModel();
-                    questionDataModel.setQuestion(jsonObject.getString("question"));
+                    for (int j = 1; j < jArray.length(); j++) {
+                        JSONObject jsonObject = jArray.getJSONObject(j);
 
-                    JSONArray jsonArray1 = jsonObject.getJSONArray("options");
+                        if (jsonObject.getString("id").equals(trigger)) {
+                            QuestionDataModel questionDataModel = new QuestionDataModel();
+                            questionDataModel.setQuestion(jsonObject.getString("question"));
 
-                    List<OptionsDataModel> optionsDataModelList = new ArrayList<OptionsDataModel>();
-                    for (int i = 0; i < jsonArray1.length(); i++) {
-                        OptionsDataModel optionsDataModel = new OptionsDataModel();
-                        JSONObject jsonObject1 = jsonArray1.getJSONObject(i);
-                        optionsDataModel.setMessage(jsonObject1.getString("string"));
-                        optionsDataModel.setNext_question(jsonObject1.getString("next_question"));
-                        optionsDataModel.setSelected(false);
-                        optionsDataModelList.add(optionsDataModel);
+                            JSONArray jsonArray1 = jsonObject.getJSONArray("options");
+
+                            List<OptionsDataModel> optionsDataModelList = new ArrayList<OptionsDataModel>();
+                            for (int i = 0; i < jsonArray1.length(); i++) {
+                                OptionsDataModel optionsDataModel = new OptionsDataModel();
+                                JSONObject jsonObject1 = jsonArray1.getJSONObject(i);
+                                optionsDataModel.setMessage(jsonObject1.getString("string"));
+                                optionsDataModel.setNext_question(jsonObject1.getString("next_question"));
+                                optionsDataModel.setSelected(false);
+                                optionsDataModelList.add(optionsDataModel);
+                            }
+
+                            questionDataModel.setOptionsDataModelList(optionsDataModelList);
+                            questionDataModelList.add(questionDataModel);
+                        }
+
                     }
 
-                    questionDataModel.setOptionsDataModelList(optionsDataModelList);
-                    questionDataModelList.add(questionDataModel);
+                    questionsListAdapter.notifyDataSetChanged();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
             }
-
-            questionsListAdapter.notifyDataSetChanged();
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     @Override

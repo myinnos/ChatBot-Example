@@ -17,7 +17,9 @@ public class TriggerNotification {
 
     public static void notify(final Activity activity, String triggerMessage) {
 
-        String TRIGGER_URL = "<DOMAIN>/rapido/trigger.php?title=" + triggerMessage;
+        String email = "driver@gmail.com";
+        String TRIGGER_URL = "<DOMAIN>/rapido/trigger.php?title="
+                + triggerMessage + "&email=" + email;
 
         StringRequest stringRequest = new StringRequest(TRIGGER_URL,
                 new Response.Listener<String>() {

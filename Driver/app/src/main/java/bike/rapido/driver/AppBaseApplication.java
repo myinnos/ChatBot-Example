@@ -34,7 +34,7 @@ public class AppBaseApplication extends MultiDexApplication {
         turnOnStrictMode();
 
         OneSignal.startInit(this)
-                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.None)
                 .unsubscribeWhenNotificationsAreDisabled(true)
                 .setNotificationReceivedHandler(new ExampleNotificationReceivedHandler())
                 .init();
