@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+final SDK_VERSION = '25.3.1'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "bike.rapido.passenger"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        manifestPlaceholders = [onesignal_app_id: "4d6aa705-0bd6-4b57-84df-a74050313cb0",
+                                onesignal_google_project_number: "REMOTE"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/io.netty.versions.properties'
+        exclude 'META-INF/INDEX.LIST'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:$SDK_VERSION"
+    compile "com.android.support:design:$SDK_VERSION"
+    compile "com.android.support:cardview-v7:$SDK_VERSION"
+    compile 'com.android.support:multidex:1.0.1'
+
+    compile ('com.google.apis:google-api-services-translate:v2-rev47-1.22.0') {
+        exclude group: 'com.google.guava'
+        exclude module: 'httpclient'
+        exclude group: 'org.apache.httpcomponents'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+        exclude group: 'org.json', module: 'json'
+    }
+    compile ('com.google.cloud:google-cloud-translate:0.5.0') {
+        exclude group: 'io.grpc', module: 'grpc-all'
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+        exclude group: 'com.google.api-client', module: 'google-api-client-appengine'
+        exclude module: 'httpclient'
+        exclude group: 'org.apache.httpcomponents'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+        exclude group: 'org.json', module: 'json'
+    }
+
+    compile 'com.mcxiaoke.volley:library-aar:1.0.0'
+    // one signal
+    compile 'com.onesignal:OneSignal:3.+@aar'
+    // Required for OneSignal, even if added FCM.
+    compile 'com.google.android.gms:play-services-gcm:+'
+}

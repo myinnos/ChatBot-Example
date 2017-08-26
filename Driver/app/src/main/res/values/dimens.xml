@@ -1,0 +1,23 @@
+<resources>
+
+    <dimen name="margin_right">40dp</dimen>
+    <dimen name="margin_left">40dp</dimen>
+    <dimen name="margin_options_text">10dp</dimen>
+    <dimen name="margin_question_text">8dp</dimen>
+    <dimen name="margin_spinner">10dp</dimen>
+    <dimen name="margin_relative_top">5dp</dimen>
+    <dimen name="margin_relative_bottom">20dp</dimen>
+
+    <dimen name="padding_chat_card">8dp</dimen>
+    <dimen name="padding_options_text">8dp</dimen>
+    <dimen name="padding_question_text">10dp</dimen>
+
+    <dimen name="question_text_size">16sp</dimen>
+    <dimen name="options_text_size">14sp</dimen>
+    <dimen name="question_card_corner_radius">1dp</dimen>
+    <dimen name="options_card_corner_radius">5dp</dimen>
+    <dimen name="view_height">2dp</dimen>
+    <dimen name="card_levation">1dp</dimen>
+    <dimen name="progress_bar">50dp</dimen>
+
+</resources>

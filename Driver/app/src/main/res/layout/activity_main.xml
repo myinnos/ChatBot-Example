@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/margin_spinner" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_height"
+        android:layout_below="@+id/spinner"
+        android:background="@color/black_transparent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/spinner"
+        android:layout_marginBottom="@dimen/margin_relative_bottom"
+        android:layout_marginTop="@dimen/margin_relative_top">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvChatData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:scrollbars="vertical" />
+    </RelativeLayout>
+
+    <include layout="@layout/progress_bar_global" />
+
+</RelativeLayout>
